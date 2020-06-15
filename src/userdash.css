@@ -1,0 +1,49 @@
+p.small {
+	font-size: .75rem;
+}
+
+.ant-card p {
+	margin-bottom: .3rem;
+}
+
+.userDashHeader {
+	background: rgba(255, 255, 255, 0.2);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	height: 64px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.userDashMenu {
+	text-align: left;
+	margin-top: 20px;
+}
+
+
+main.userDashMain {
+	margin: 24px 16px;
+	padding: 24px;
+	background: rgb(255, 255, 255);
+	min-height: 280px;
+}
+
+.userDashContentHeader {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.userDashList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.teamCard {
+	margin: 10px;
+	border-radius: 5px;
+}
+
