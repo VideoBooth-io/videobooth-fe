@@ -14,8 +14,6 @@ import { registerUser, setError, clearError } from "../redux/actions/userActions
 
 //This is the registration form schema
 //If the data doesn't look like this when we submit then it will fail with a message
-console.log(process.env.REACT_APP_ENV)
-console.log(process.env.REACT_APP_PRODUCTION_URL)
 const formSchema = yup.object().shape({
   first_name: yup.string(),
   last_name: yup.string(),

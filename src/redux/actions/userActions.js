@@ -293,7 +293,6 @@ export const updateUProfilePicture = (id, photo) => (dispatch) => {
 				message: 'Profile picture successfully updated!',
 				duration: 2,
 			});
-				console.log(res)
 			})
 			.catch(err => {
 				dispatch({ type: constants.UPDATE_PROFILE_PICTURE_FAILURE, payload: err });

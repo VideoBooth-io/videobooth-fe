@@ -14,7 +14,6 @@ const fileListToArray = (list) => {
     array.push(list.item(i));
 	}
 	array[0].path = URL.createObjectURL(list[0])
-	console.log(array)
   return array
 }
 

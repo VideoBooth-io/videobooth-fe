@@ -3,7 +3,6 @@ import React from "react";
 import { RemoteServeDir } from "../utils/RemoteServeDir";
 
 function VideoPlayer({ video, width }) {
-	console.log(RemoteServeDir)
 	return (
 		<div className="video-details">
 			<div className="video-player">

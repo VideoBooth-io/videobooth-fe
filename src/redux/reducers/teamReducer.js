@@ -113,7 +113,6 @@ const teamReducer = (state = initialState, { type, payload }) => {
 			};
 
 		case constants.POST_INVITE_LINK_SUCCESS:
-			console.log('Reducer', payload)
 			return {
 				...state,
 				isFetching: false,

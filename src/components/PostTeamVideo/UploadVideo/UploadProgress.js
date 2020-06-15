@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import { notification, Icon } from "antd";
 
 function UploadProgress({ isUploading, uploadProgress }) {
-	console.log(isUploading, uploadProgress)
 	function openUploadStartNotification() {
 		notification.open({
 			message: "Upload Started!",
