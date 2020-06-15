@@ -9,7 +9,7 @@ const AuthSider = (props) => {
       <Col xs={2} sm={4} md={6} lg={6} xl={8} className="auth-sider">
 				<img alt="Alpaca Vids Logo" className="alpaca-logo" src={Alpaca}></img>
 				<img alt="Alpaca Vids Logo" className="alpaca-logo-no-text" src={AlpacaNoText}></img>
-				<p>Alpaca Vids</p>
+				<p>VideoBooth.io</p>
       </Col>
       <Col xl={16} className="auth-main">
 				{props.children}
