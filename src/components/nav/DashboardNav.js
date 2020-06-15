@@ -15,7 +15,7 @@ const DashboardNav = withRouter(props => {
 			<Sider breakpoint="lg"
       collapsedWidth="0" width="240">
 				<div className={"userDashHeader"}>
-					<Title level={3}><Link to="/user-dashboard" className={"userDashHeaderFont"} style={{marginTop: "12px" }}>Alpaca&nbsp;Vids</Link></Title>
+					<Title level={3}><Link to="/user-dashboard" className={"userDashHeaderFont"} style={{marginTop: "12px" }}>VideoBooth.io</Link></Title>
 				</div>
 				<Menu theme="dark" mode="inline" className={"userDashMenu"} selectedKeys={[location.pathname]}>
 					<Menu.Item key="/user-dashboard">
