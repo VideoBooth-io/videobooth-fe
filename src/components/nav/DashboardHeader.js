@@ -19,6 +19,8 @@ function DashboardHeader(props) {
 		return props.fullName.split(" ").map((n)=>n[0]).join("").toUpperCase();
 	}
 
+	console.log(props.avatar)
+
 	const content = (
 		<div>
 			<button onClick={handleLogout}>Logout</button>
