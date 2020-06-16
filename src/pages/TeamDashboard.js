@@ -46,7 +46,7 @@ function TeamDashboard(props) {
 				redirectTimer = setTimeout(() => {
 					// Redirect after 10 secs...
 					clearTimeout(redirectTimer);
-					history.push('/user-dashboard');
+					history.push('/');
 					clearError();
 				}, 10000)
 
@@ -90,7 +90,7 @@ function TeamDashboard(props) {
 					<h1 style={{ fontSize: "36px" }}>Forbidden</h1>
 					<p>Uh oh! You are trying to access a page that you do not have permission to.</p>
 					<p>You will be redirected in {count} secs...</p>
-					<p>Or <Link to="/user-dashboard" onClick={clearDataAfterRedirect}>click here</Link> to redirect immediately.</p>
+					<p>Or <Link to="/" onClick={clearDataAfterRedirect}>click here</Link> to redirect immediately.</p>
 				</div>
 			)
 		}

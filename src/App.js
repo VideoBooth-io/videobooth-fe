@@ -15,7 +15,6 @@ import UserVideos from "./pages/UserVideos";
 import TeamDashboard from "./pages/TeamDashboard";
 import VideoDetails from "./pages/VideoDetails";
 import Invite from "./pages/Invite";
-import Home from "./pages/Home";
 
 // Styles
 import "./App.scss";
@@ -39,7 +38,6 @@ function App(props) {
 	return (
 		<div className="app">
 			{props.inviteError ? <Alert message={props.inviteError} type="error" /> : null}
-			<Route exact path="/" component={Home} />
 
 			<Route exact path="/login" component={Login} />
 
@@ -47,7 +45,7 @@ function App(props) {
 
 			<Route exact path="/invite/:invite" component={Invite} />
 
-			<PrivateRoute exact path="/user-dashboard" component={UserDashboard} />
+			<PrivateRoute exact path="/" component={UserDashboard} />
 
 			<PrivateRoute exact path="/videos/:id" component={VideoDetails} />
 

@@ -45,7 +45,7 @@ const Register = ({isLogged, clearError, registerUser, setError, error}) => {
   useEffect(() => {
     if (isLogged) {
       clearError();
-      history.push("/user-dashboard");
+      history.push("/");
     }
   }, [isLogged, clearError, history]);
 

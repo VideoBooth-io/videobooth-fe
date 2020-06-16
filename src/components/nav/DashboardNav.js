@@ -15,11 +15,11 @@ const DashboardNav = withRouter(props => {
 			<Sider breakpoint="lg"
       collapsedWidth="0" width="240">
 				<div className={"userDashHeader"}>
-					<Title level={3}><Link to="/user-dashboard" className={"userDashHeaderFont"} style={{marginTop: "12px" }}>VideoBooth.io</Link></Title>
+					<Title level={3}><Link to="/" className={"userDashHeaderFont"} style={{marginTop: "12px" }}>VideoBooth.io</Link></Title>
 				</div>
 				<Menu theme="dark" mode="inline" className={"userDashMenu"} selectedKeys={[location.pathname]}>
 					<Menu.Item key="/user-dashboard">
-						<Link to="/user-dashboard" style={{ color: "#fff", display: "block" }}>
+						<Link to="/" style={{ color: "#fff", display: "block" }}>
 						<Icon type="home" theme="filled" /> Dashboard</Link>
 					</Menu.Item>
 					<Menu.Item key="/profile">

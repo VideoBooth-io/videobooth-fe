@@ -7,7 +7,7 @@ const ProfileCarousel = (props) => {
 	let history = useHistory();
 
 	const handleRedirect = () => {
-		history.push('/user-dashboard');
+		history.push('/');
 	}
 
 	return (
