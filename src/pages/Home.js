@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Typography, Button, Popover, Card } from "antd";
-import Alpaca from '../imgs/alpaca-logo.png';
+import Alpaca from '../imgs/alpaca-logo-no-text.png';
 import { useHistory, Link } from "react-router-dom";
 
 const { Title } = Typography;
@@ -11,10 +11,20 @@ const Home = () => {
 
 	return (
 		<header className="home">
-			<div className="mainbg">
+			<div className="home-nav">
+			<div className="home-logo">
+				<img src={Alpaca} />
+				<span>VideoBooth.io</span>
 			</div>
-			<div className="cover"></div>
-			<div className="header">
+			<Link to="/login">Login</Link>
+			</div>
+			<div className="cover">
+				<div className="home-text">
+					<h1>Practice answering interview questions</h1>
+					<h2>Get feedback from your peers</h2>
+				</div>
+			</div>
+			{/* <div className="header">
 				<div className="logo">
 					<img alt="Alpaca Vids Logo" className="alpaca-logo" src={Alpaca}></img>
 				</div>
@@ -23,7 +33,7 @@ const Home = () => {
 					<h2>Hone your presence,<br />land your dream job.</h2>
 					<div className="start">
 						{/* <Button>Get Started</Button> */}
-						<Button size="large"
+						{/* <Button size="large"
 							// icon="caret-right"
 							className="adding-button"
 							onClick={
@@ -37,16 +47,15 @@ const Home = () => {
 					</div>
 				</div>
 
-			</div>
-			<div className="bar">
+			</div> */} 
+			{/* <div className="bar">
 				<div className="title">
 					<h1 className="userDashHeaderFont" >VideoBooth.io</h1>
 				</div>
 				<div className="links">
-					<Link to="/login">login</Link>
 					<a href="https://github.com/Lambda-School-Labs/video-journal-for-teams-fe">github</a>
 				</div>
-			</div>
+			</div> */}
 		</header>
 	)
 }
