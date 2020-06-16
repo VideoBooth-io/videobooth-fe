@@ -18,10 +18,11 @@ const Home = () => {
 			</div>
 			<Link to="/login">Login</Link>
 			</div>
-			<div className="cover">
+			<div className="main">
+				<div className="cover"></div>
 				<div className="home-text">
-					<h1>Practice answering interview questions</h1>
-					<h2>Get feedback from your peers</h2>
+					<h1>Practice&nbsp;answering interview&nbsp;questions</h1>
+					<h2>Get&nbsp;feedback from&nbsp;your peers</h2>
 				</div>
 			</div>
 			{/* <div className="header">

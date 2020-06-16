@@ -146,21 +146,27 @@ header.home {
 		}
 	}
 
-	div.cover {
+	div.main {
 		display: flex;
 		align-items: center;;
 		justify-content: flex-end;
 		height: 100%;
 		width: 100%;
-		background-size: contain;
-		background-repeat: no-repeat;
 		background-color: white;
-		background-image: url("../imgs/undraw_youtube_tutorial_2gn3.png");
+		.cover {
+			height: 100%;
+			width: 100%;
+			min-width: 50%;
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+			background-image: url("../imgs/undraw_youtube_tutorial_2gn3.png");
+		}
 		.home-text {
 			display: flex;
 			flex-direction: column;
 			align-items: flex-start;
-			max-width: 25%;
+			width: 500px;
 			margin-right: 70px;
 			h1 {
 				color: $alpaca-blue;
@@ -171,17 +177,7 @@ header.home {
 				text-align: left;
 			}
 		}
-		
-		// background-position: center center;
-		// background-size: 50%;
 	}
-
-	// div.mainbg {
-	// 	position: absolute;
-	// 	height: 100%;
-	// 	width: 100%;
-	// 	background-image: linear-gradient(desaturate(darken($pale-yellow, 30%), 50%), lighten($pale-yellow, 20%));
-	// }
 	.bar {
 		display: flex;
 		flex-direction: row;
