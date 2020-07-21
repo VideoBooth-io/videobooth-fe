@@ -25,7 +25,7 @@ const formSchema = yup.object().shape({
   confirm_password: yup.string().oneOf([yup.ref("password"), null], "Passwords must match."),
 });
 
-const SignUp = ({isLogged, clearError, registerUser, setError, error}) => {
+const SignUp = ({isLogged, clearError, registerUser, setError, authError, authLoading}) => {
   const [applicant, setApplicant] = useState({
     first_name: "",
     last_name: "",
@@ -74,7 +74,7 @@ const SignUp = ({isLogged, clearError, registerUser, setError, error}) => {
             <h1>VideoBooth.io</h1>
           </a>
         </div>
-          {error ? <Alert message={error} type="error" /> : null}
+          {authError ? <Alert message={authError} type="error" /> : null}
           <Form onSubmit={submitRegistration} className="register-form" data-testid="register-form" labelAlign="left">
           <Form.Item>
               <Input
@@ -104,7 +104,7 @@ const SignUp = ({isLogged, clearError, registerUser, setError, error}) => {
                 name="email"
                 onChange={handleInput}
                 value={applicant.email}
-                placeholder="Email"
+                placeholder="Email address"
                 autoComplete="off"
                 required
               />
@@ -132,8 +132,8 @@ const SignUp = ({isLogged, clearError, registerUser, setError, error}) => {
               />
             </Form.Item>
             <Form.Item>
-            <Button type="primary" htmlType="submit" className="register-form-button">
-                Sign Up
+            <Button type="primary" htmlType="submit" loading={authLoading} className="register-form-button">
+                {authLoading ? "Loading..." : "Sign Up"}
               </Button>
             </Form.Item>
           </Form>
@@ -148,7 +148,8 @@ const SignUp = ({isLogged, clearError, registerUser, setError, error}) => {
 
 const mapStateToProps = (state) => ({
   isLogged: state.User.isLogged,
-  error: state.User.error,
+  authError: state.User.authError,
+  authLoading: state.User.authLoading,
 });
 
 const mapActionsToProps = {

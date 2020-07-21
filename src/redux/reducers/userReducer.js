@@ -7,8 +7,9 @@ const initialState = {
 	first_name: "",
 	last_name: "",
 	email: "",
-	username: "",
 	avatar: "",
+	authLoading: false,
+	authError: null,
 	imageUpload: {
 		isUploading: false,
 		progress: 0,
@@ -51,7 +52,13 @@ const initialState = {
 
 const userReducer = (state = initialState, { type, payload }) => {
 	switch (type) {
-		case constants.REGISTER_USER:
+		case constants.AUTH_START:
+			return {
+				...state,
+				authLoading: true,
+				authError: null,
+			}
+		case constants.AUTH_SUCCESS:
 			//Store login token in browser localStorage
 			localStorage.setItem("token", payload.token);
 			return {
@@ -60,24 +67,16 @@ const userReducer = (state = initialState, { type, payload }) => {
 				first_name: payload.user.first_name,
 				last_name: payload.user.last_name,
 				email: payload.user.email,
-				username: payload.user.username,
 				isLogged: true,
+				authLoading: false,
+				authError: null,
 			};
-
-		case constants.LOGIN_USER:
-			//Store login token in browser localStorage
-			localStorage.setItem("token", payload.token);
+		case constants.AUTH_FAILURE:
 			return {
 				...state,
-				userId: payload.user.id,
-				first_name: payload.user.first_name,
-				last_name: payload.user.last_name,
-				email: payload.user.email,
-				username: payload.user.username,
-				avatar: payload.user.avatar,
-				isLogged: true,
-			};
-
+				authLoading: false,
+				authError: payload,
+			}
 		case constants.LOGOUT_USER:
 			localStorage.removeItem("token");
 			localStorage.removeItem("persist:root");

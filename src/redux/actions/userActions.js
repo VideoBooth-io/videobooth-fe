@@ -5,54 +5,32 @@ import { notification } from "antd";
 
 // REGISTER A NEW USER
 export const registerUser = (applicant) => (dispatch) => {
+	dispatch({ type: constants.AUTH_START});
 	axios
 		.post("/auth/register", applicant)
 		.then((registerResponse) => {
-			dispatch({ type: constants.REGISTER_USER, payload: registerResponse.data });
+			dispatch({ type: constants.AUTH_SUCCESS, payload: registerResponse.data });
 		})
 		.catch((err) => {
 			if (err.response.data.error) {
-				dispatch({ type: constants.GENERATE_ERROR, payload: err.response.data.error });
+				dispatch({ type: constants.AUTH_FAILURE, payload: err.response.data.error });
 			} else {
-				dispatch({ type: constants.GENERATE_ERROR, payload: "An unexpected error occured." });
+				dispatch({ type: constants.AUTH_FAILURE, payload: "An unexpected error occured." });
 			}
 		});
 };
 
 // LOGIN A USER
-export const loginUser = (userCredentials) => (dispatch) => {
-	if (userCredentials.method === "email") {
-		const user = {
-			email: userCredentials.usernameOrEmail,
-			password: userCredentials.password,
-		};
-
-		axios
-			.post("/auth/login/email", user)
-			.then((loginResponse) => {
-				dispatch({ type: constants.LOGIN_USER, payload: loginResponse.data });
-			})
-			.catch((err) => {
-				dispatch({ type: constants.GENERATE_ERROR, payload: "The email address or password you entered is incorrect" });
-			});
-	} else {
-		const user = {
-			username: userCredentials.usernameOrEmail,
-			password: userCredentials.password,
-		};
-
-		axios
-			.post("/auth/login/username", user)
-			.then((loginResponse) => {
-				dispatch({ type: constants.LOGIN_USER, payload: loginResponse.data });
-			})
-			.catch((err) => {
-				dispatch({
-					type: constants.GENERATE_ERROR,
-					payload: "The username or password you entered is incorrect",
-				});
-			});
-	}
+export const loginUser = (user) => (dispatch) => {
+	dispatch({ type: constants.AUTH_START});
+	axios
+		.post("/auth/login", user)
+		.then((loginResponse) => {
+			dispatch({ type: constants.AUTH_SUCCESS, payload: loginResponse.data });
+		})
+		.catch((err) => {
+			dispatch({ type: constants.AUTH_FAILURE, payload: "The email address or password you entered is incorrect" });
+		});
 };
 
 export const logoutUser = () => (dispatch) => {

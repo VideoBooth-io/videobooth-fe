@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import Logo from '../imgs/film.png'
 
@@ -10,15 +10,15 @@ import { connect } from "react-redux";
 import { loginUser, setError, clearError } from "../redux/actions/userActions";
 
 // Components
-import { Form, Icon, Input, Button, Alert, Divider } from "antd";
+import { Form, Input, Button, Alert, Divider } from "antd";
 
 const emailLoginSchema = yup.object().shape({
   email: yup.string().email(),
 });
 
-const LogIn = ({isLogged, clearError, loginUser, error}) => {
+const LogIn = ({ isLogged, clearError, loginUser, authError, authLoading }) => {
   const [user, setUser] = useState({
-    usernameOrEmail: "",
+    email: "",
     password: "",
   });
 
@@ -40,22 +40,14 @@ const LogIn = ({isLogged, clearError, loginUser, error}) => {
   const submitLogin = (e) => {
     e.preventDefault();
 
-    const userCredentials = user;
+    console.log(user)
 
     emailLoginSchema
-      .validate({ email: user.usernameOrEmail })
+      .validate({ email: user.email })
       .then(() => {
-        userCredentials.method = "email";
-
-        loginUser(userCredentials);
+        loginUser(user);
       })
-      .catch(() => {
-        userCredentials.method = "username";
-
-        loginUser(userCredentials);
-      });
-
-    setUser({ usernameOrEmail: "", password: "" });
+    setUser({ email: "", password: "" });
   };
 
   return (
@@ -67,14 +59,15 @@ const LogIn = ({isLogged, clearError, loginUser, error}) => {
             <h1>VideoBooth.io</h1>
           </a>
         </div>
+        {authError ? <Alert message={authError} type="error" /> : null}
         <Form className="login-form" data-testid="login-form">
           <Form.Item>
             <Input
               type="text"
-              name="usernameOrEmail"
-              value={user.usernameOrEmail}
+              name="email"
+              value={user.email}
               onChange={handleInput}
-              placeholder="Username or Email"
+              placeholder="Email Address"
               autoComplete="off"
               required
             />
@@ -91,13 +84,13 @@ const LogIn = ({isLogged, clearError, loginUser, error}) => {
             />
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="button" onClick={submitLogin} className="login-form-button">
-              Sign In
+            <Button type="primary" htmlType="button" loading={authLoading} onClick={submitLogin} className="login-form-button">
+              {authLoading ? "Loading..." : "Log In"}
             </Button>
           </Form.Item>
         </Form>
         <Divider>or</Divider>
-        <Button type="primary" htmlType="button" className="signup-link" href="/signup">
+        <Button htmlType="button" className="signup-link" href="/signup">
           Sign Up
         </Button>
       </div>
@@ -107,7 +100,8 @@ const LogIn = ({isLogged, clearError, loginUser, error}) => {
 
 const mapStateToProps = (state) => ({
   isLogged: state.User.isLogged,
-  error: state.User.error,
+  authError: state.User.authError,
+  authLoading: state.User.authLoading,
 });
 
 const mapActionsToProps = {

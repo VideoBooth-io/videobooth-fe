@@ -4,8 +4,9 @@ const constants = {
 
 	//USER CONSTANTS
 	//AUTH
-	REGISTER_USER: "user:register-user",
-	LOGIN_USER: "user:login",
+	AUTH_START: "user:auth-start",
+	AUTH_SUCCESS: "user:auth-success",
+	AUTH_FAILURE: "user:auth-failure",
 	LOGOUT_USER: "user:logout",
 
 	//GET fetch teams for user

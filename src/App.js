@@ -36,7 +36,7 @@ function App(props) {
 	}, [isLogged, invited_team_id, invite_code, addToInvitedTeam, userId, history]);
 
 	return (
-		<div className="app">
+		<div className="App">
 			{props.inviteError ? <Alert message={props.inviteError} type="error" /> : null}
 
 			<Route exact path="/login" component={LogIn} />
