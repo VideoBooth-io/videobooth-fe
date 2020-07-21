@@ -16,7 +16,7 @@ const emailLoginSchema = yup.object().shape({
   email: yup.string().email(),
 });
 
-const Login = ({isLogged, clearError, loginUser, error}) => {
+const LogIn = ({isLogged, clearError, loginUser, error}) => {
   const [user, setUser] = useState({
     usernameOrEmail: "",
     password: "",
@@ -116,4 +116,4 @@ const mapActionsToProps = {
   clearError,
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(Login);
+export default connect(mapStateToProps, mapActionsToProps)(LogIn);

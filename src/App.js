@@ -7,8 +7,8 @@ import PrivateRoute from "./components/utils/PrivateRoute";
 import UploadProgress from "./components/PostTeamVideo/UploadVideo/UploadProgress";
 
 // Pages
-import Login from "./pages/Login";
-import SignUp from "./pages/Signup";
+import LogIn from "./pages/LogIn";
+import SignUp from "./pages/SignUp";
 import UserDashboard from "./pages/UserDashboard";
 import UserProfileDashboard from "./pages/UserProfileDashboard";
 import UserVideos from "./pages/UserVideos";
@@ -39,7 +39,7 @@ function App(props) {
 		<div className="app">
 			{props.inviteError ? <Alert message={props.inviteError} type="error" /> : null}
 
-			<Route exact path="/login" component={Login} />
+			<Route exact path="/login" component={LogIn} />
 
 			<Route exact path="/signup" component={SignUp} />
 
