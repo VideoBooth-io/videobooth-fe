@@ -22,7 +22,7 @@ const userPersistConfig = {
   key: 'User',
   storage: storage,
   stateReconciler: autoMergeLevel2,
-  blacklist: ['error', 'invite', 'imageUpload']
+  blacklist: ['error', 'invite', 'imageUpload', 'authError', 'authLoading']
 };
 
 const teamPersistConfig = {

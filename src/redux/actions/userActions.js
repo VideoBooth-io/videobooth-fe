@@ -29,7 +29,7 @@ export const loginUser = (user) => (dispatch) => {
 			dispatch({ type: constants.AUTH_SUCCESS, payload: loginResponse.data });
 		})
 		.catch((err) => {
-			dispatch({ type: constants.AUTH_FAILURE, payload: "The email address or password you entered is incorrect" });
+			dispatch({ type: constants.AUTH_FAILURE, payload: err.response.data.message });
 		});
 };
 

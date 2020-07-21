@@ -12,6 +12,10 @@
 		border-radius: 5px;
 		padding: 42px 42px 36px;
 		background-color: white;
+		@media(max-width: 600px) {
+			border: none;
+			background-color: transparent;
+		}
 		.ant-alert {
 			margin-bottom: 10px;
 		}
@@ -19,7 +23,7 @@
 				a {
 				display: flex;
 				align-items: center;
-				padding: 20px;
+				padding-bottom: 20px;
 				justify-content: center;
 				h1 {
 					font-family: Pacifico;

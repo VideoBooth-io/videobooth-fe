@@ -85,7 +85,7 @@ const LogIn = ({ isLogged, clearError, loginUser, authError, authLoading }) => {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="button" loading={authLoading} onClick={submitLogin} className="login-form-button">
-              {authLoading ? "Loading..." : "Log In"}
+              {authLoading ? null : "Log In"}
             </Button>
           </Form.Item>
         </Form>

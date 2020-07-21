@@ -67,6 +67,7 @@ const userReducer = (state = initialState, { type, payload }) => {
 				first_name: payload.user.first_name,
 				last_name: payload.user.last_name,
 				email: payload.user.email,
+				avatar: payload.user.avatar,
 				isLogged: true,
 				authLoading: false,
 				authError: null,
@@ -421,6 +422,7 @@ const userReducer = (state = initialState, { type, payload }) => {
 			return {
 				...state,
 				error: null,
+				authError: null,
 				isFetching: false,
 			};
 		default:

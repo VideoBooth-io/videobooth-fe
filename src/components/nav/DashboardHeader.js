@@ -25,6 +25,9 @@ function DashboardHeader(props) {
 		</div>
 	);
 
+	console.log(process.env.REACT_APP_S3_STORAGE_PATH)
+	console.log(props.avatar)
+
 	return (
 		<Header className="userDashHeader">
 			<div className="userDashContentHeader">

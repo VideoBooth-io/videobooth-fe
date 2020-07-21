@@ -133,7 +133,7 @@ const SignUp = ({isLogged, clearError, registerUser, setError, authError, authLo
             </Form.Item>
             <Form.Item>
             <Button type="primary" htmlType="submit" loading={authLoading} className="register-form-button">
-                {authLoading ? "Loading..." : "Sign Up"}
+                {authLoading ? null : "Sign Up"}
               </Button>
             </Form.Item>
           </Form>
