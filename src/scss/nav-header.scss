@@ -1,28 +1,11 @@
-.nav-header {
-	height: 100vh;
+.nav-header, {
 	width: 100%;
-	.userDashHeaderFont {
-		color: $alpaca-green;
-		font-family: Pacifico;
-		font-style: normal;
-		font-weight: normal;
-		font-size: 36px;
-		line-height: 63px;
-		display: flex;
-		align-items: center;
-		&:hover {
-			color: $alpaca-green;
-		}
-	}
 	.ant-layout-sider-zero-width-trigger {
 		top: 20px;
 	}
 	.userDashHeader {
 		height: 83px;
 		padding: 0;
-		.userDashHeaderFont {
-			margin-bottom: 0;
-		}
 		.userDashContentHeader {
 			padding: 0 50px;
 			background-color: $white;
@@ -44,5 +27,15 @@
 	button {
 		border: none !important;
 		cursor: pointer;
+	}
+}
+
+.side-nav {
+	.ant-layout-header {
+		height: 83px;
+		padding: 0;
+		.logo {
+			@include HeaderLogo;
+		}
 	}
 }

@@ -1,26 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Layout, Typography } from 'antd';
 import 'antd/dist/antd.css';
 import ProfileContent from '../components/profile/ProfileContent';
-import ProfileJumbtron from '../components/profile/ProfileJumbotron';
+
 const { Title } = Typography;
-const { Header, Footer, Content } = Layout;
+const { Header, Content } = Layout;
 
 function EditUserDashboard() {
-	return (
-		<>
-			<Layout>
-				<Header className="full-header">
-					<Title level={3} className={"userDashHeaderFont"}>Alpaca Vids</Title>
-				</Header>
-				<ProfileJumbtron />
-				<Content className="profile-page">
-					<ProfileContent />
-				</Content>
-				<Footer>Squid Syskey Productions &copy; Copyright</Footer>
-			</Layout>
-		</>
-	)
+  return (
+    <Layout className="profile-page">
+      <Header>
+        <Link to="/">
+          <Title level={3} className="logo">
+            VideoBooth.io
+          </Title>
+        </Link>
+      </Header>
+      <Content className="profile-page">
+        <ProfileContent />
+      </Content>
+    </Layout>
+  );
 }
 
-export default EditUserDashboard
+export default EditUserDashboard;

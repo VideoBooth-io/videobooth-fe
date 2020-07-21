@@ -1,13 +1,16 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Progress = (props) => {
-	return (
-	<div className="ProgressBar">
-		<div
-			className="Progress"
-			style={{ width: props.progress + '%' }}
-		/>
-	</div>);
-}
- 
+const Progress = ({ progress }) => (
+  <div className="ProgressBar">
+    <div
+      className="Progress"
+      style={{ width: `${progress}%` }}
+    />
+  </div>
+);
+Progress.propTypes = {
+  progress: PropTypes.number.isRequired,
+};
+
 export default Progress;

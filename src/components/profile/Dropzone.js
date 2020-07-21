@@ -1,86 +1,97 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Icon, Avatar, Button } from 'antd';
+import { connect } from 'react-redux';
 
-import { connect } from "react-redux";
+const Dropzone = ({ disabled, avatar, fileAdded }) => {
+  const [hightlight, setHighlight] = useState(false);
+  const fileInputRef = React.createRef();
 
-const Dropzone = (props) => {
-	const [hightlight, setHighlight] = useState(false)
-	const fileInputRef = React.createRef();
+  const fileListToArray = (list) => {
+    const array = [];
 
-const fileListToArray = (list) => {
-	const array = [];
+    for (let i = 0; i < list.length; i += 1) {
+      array.push(list.item(i));
+    }
+    array[0].path = URL.createObjectURL(list[0]);
+    return array;
+  };
 
-  for (var i = 0; i < list.length; i++) {
-    array.push(list.item(i));
-	}
-	array[0].path = URL.createObjectURL(list[0])
-  return array
-}
+  const onFileAdded = (evt) => {
+    if (disabled) return;
+    const { files } = evt.target;
+    if (fileAdded) {
+      const array = fileListToArray(files);
+      fileAdded(array);
+    }
+  };
 
-	const onFileAdded = (evt) => {
-		if (props.disabled) return;
-  		const files = evt.target.files;
-  	if (props.onFileAdded) {
-    	const array = fileListToArray(files);
-    	props.onFileAdded(array);
-	}
-}
+  const openFileDialog = () => {
+    if (disabled) return;
+    fileInputRef.current.click();
+  };
 
-	const openFileDialog = () => {
-		if (props.disabled) return;
-		fileInputRef.current.click();
-	}
+  const onDragOver = (evt) => {
+    evt.preventDefault();
+    if (disabled) return;
+    setHighlight(true);
+  };
 
-	const onDragOver = (evt) => {
-		evt.preventDefault();
+  const onDragLeave = () => {
+    setHighlight(false);
+  };
 
-  	if (props.disabled) return;
+  const onDrop = (event) => {
+    event.preventDefault();
 
-  	setHighlight(true);
-	}
+    if (disabled) return;
 
-	const onDragLeave = () => {
-		setHighlight(false);
-	}
+    const { files } = event.dataTransfer;
+    if (fileAdded) {
+      const array = fileListToArray(files);
+      fileAdded(array);
+    }
+    setHighlight(false);
+  };
 
-	const onDrop = (event) => {
-		event.preventDefault();
-
-		if (props.disabled) return;
-
-		const files = event.dataTransfer.files;
-		if (props.onFileAdded) {
-			const array = fileListToArray(files);
-			props.onFileAdded(array);
-		}
-		setHighlight(false);
-	}
-
-	return (
-		<div className="dropzone-component">
-			<Avatar alt="user avatar" size={216} className="user-avatar" src={`${process.env.REACT_APP_S3_STORAGE_PATH}${props.avatar}`} />
-			<Icon type="cloud-upload" className={`Dropzone ${hightlight ? "Highlight" : ""}`}
-				onDragOver={onDragOver}
-				onDragLeave={onDragLeave}
-				onDrop={onDrop}
-				onClick={openFileDialog}
-				style={{ cursor: props.disabled ? "default" : "pointer" }}/>
-				<input
-					ref={fileInputRef}
-					className="FileInput"
-					type="file"
-					multiple
-					onChange={onFileAdded}
-				/>
-			<Button onClick={openFileDialog}>
-				<span>Change profile picture</span>
-			</Button>
-		</div>
-	);
-}
+  return (
+    <div className="dropzone-component">
+      <Avatar alt="user avatar" size={216} className="user-avatar" src={`${process.env.REACT_APP_S3_STORAGE_PATH}${avatar}`} />
+      <Icon
+        type="cloud-upload"
+        className={`Dropzone ${hightlight ? 'Highlight' : ''}`}
+        onDragOver={onDragOver}
+        onDragLeave={onDragLeave}
+        onDrop={onDrop}
+        onClick={openFileDialog}
+        style={{ cursor: disabled ? 'default' : 'pointer' }}
+      />
+      <input
+        ref={fileInputRef}
+        className="FileInput"
+        type="file"
+        multiple
+        onChange={onFileAdded}
+      />
+      <Button onClick={openFileDialog}>
+        <span>Change profile picture</span>
+      </Button>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
-	avatar: state.User.avatar
+  avatar: state.User.avatar,
 });
- 
+
+Dropzone.propTypes = {
+  disabled: PropTypes.bool,
+  avatar: PropTypes.string.isRequired,
+  fileAdded: PropTypes.func.isRequired,
+};
+
+Dropzone.defaultProps = {
+  disabled: null,
+};
+
 export default connect(mapStateToProps, {})(Dropzone);
