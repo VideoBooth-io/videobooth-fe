@@ -1,46 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { useHistory, Link } from "react-router-dom";
-import * as yup from "yup";
-import Logo from '../imgs/film.png'
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
+import * as yup from 'yup';
 
 // Redux
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 // Components
-import { Form, Input, Button, Alert, Divider } from "antd";
+import {
+  Form, Input, Button, Alert, Divider,
+} from 'antd';
+import Logo from '../imgs/film.png';
 
 // Actions
-import { registerUser, setError, clearError } from "../redux/actions/userActions";
+import { registerUser, setAuthError, clearAuthError } from '../redux/actions/userActions';
 
-//This is the registration form schema
-//If the data doesn't look like this when we submit then it will fail with a message
+// This is the registration form schema
+// If the data doesn't look like this when we submit then it will fail with a message
 const formSchema = yup.object().shape({
   first_name: yup.string(),
   last_name: yup.string(),
-  email: yup.string().email("Please enter a valid email address."),
+  email: yup.string().email('Please enter a valid email address.'),
   password: yup
     .string()
-    .min(8, "Password must be atleast 8 characters.")
-    .max(72, "Password must be less than 72 characters."),
-  confirm_password: yup.string().oneOf([yup.ref("password"), null], "Passwords must match."),
+    .min(8, 'Password must be atleast 8 characters.')
+    .max(72, 'Password must be less than 72 characters.'),
+  confirm_password: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match.'),
 });
 
-const SignUp = ({isLogged, clearError, registerUser, setError, authError, authLoading}) => {
+const SignUp = ({
+  isLogged, clearError, register, setError, authError, authLoading,
+}) => {
   const [applicant, setApplicant] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    password: "",
-    confirm_password: "",
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    confirm_password: '',
   });
 
-  let history = useHistory();
+  const history = useHistory();
 
-  //Redirect if logged already logged in OR on successful registration
+  // Redirect if logged already logged in OR on successful registration
   useEffect(() => {
     if (isLogged) {
       clearError();
-      history.push("/");
+      history.push('/');
     }
   }, [isLogged, clearError, history]);
 
@@ -49,16 +54,16 @@ const SignUp = ({isLogged, clearError, registerUser, setError, authError, authLo
     setApplicant({ ...applicant, [e.target.name]: e.target.value });
   };
 
-  //Attempt to register new user with provided info
+  // Attempt to register new user with provided info
   const submitRegistration = (e) => {
     e.preventDefault();
 
-    //Validate form data, return error on first error encountered
+    // Validate form data, return error on first error encountered
     formSchema
       .validate(applicant, { abortEarly: true })
       .then(() => {
-        //Data is good, proceed to registration action
-        registerUser(applicant);
+        // Data is good, proceed to registration action
+        register(applicant);
       })
       .catch((validationError) => {
         setError(validationError.errors);
@@ -70,79 +75,79 @@ const SignUp = ({isLogged, clearError, registerUser, setError, authError, authLo
       <div className="register-container">
         <div className="auth-header">
           <a href="https://videobooth.io">
-            <img src={Logo} alt="video camera logo"/>
+            <img src={Logo} alt="video camera logo" />
             <h1>VideoBooth.io</h1>
           </a>
         </div>
-          {authError ? <Alert message={authError} type="error" /> : null}
-          <Form onSubmit={submitRegistration} className="register-form" data-testid="register-form" labelAlign="left">
+        {authError ? <Alert message={authError} type="error" /> : null}
+        <Form onSubmit={submitRegistration} className="register-form" data-testid="register-form" labelAlign="left">
           <Form.Item>
-              <Input
-                type="text"
-                name="first_name"
-                onChange={handleInput}
-                value={applicant.first_name}
-                placeholder="First Name"
-                autoComplete="off"
-                required
-              />
-              </Form.Item>
-              <Form.Item>
-                <Input
-                  type="text"
-                  name="last_name"
-                  onChange={handleInput}
-                  value={applicant.last_name}
-                  placeholder="Last Name"
-                  autoComplete="off"
-                  required
-                />
-              </Form.Item>
-            <Form.Item>
-              <Input
-                type="text"
-                name="email"
-                onChange={handleInput}
-                value={applicant.email}
-                placeholder="Email address"
-                autoComplete="off"
-                required
-              />
-            </Form.Item>
-            <Form.Item>
-              <Input
-                type="password"
-                name="password"
-                onChange={handleInput}
-                value={applicant.password}
-                placeholder="Password"
-                autoComplete="off"
-                required
-              />
-            </Form.Item>
-            <Form.Item>
-              <Input
-                type="password"
-                name="confirm_password"
-                onChange={handleInput}
-                value={applicant.confirm_password}
-                placeholder="Confirm Password"
-                autoComplete="off"
-                required
-              />
-            </Form.Item>
-            <Form.Item>
+            <Input
+              type="text"
+              name="first_name"
+              onChange={handleInput}
+              value={applicant.first_name}
+              placeholder="First Name"
+              autoComplete="off"
+              required
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              type="text"
+              name="last_name"
+              onChange={handleInput}
+              value={applicant.last_name}
+              placeholder="Last Name"
+              autoComplete="off"
+              required
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              type="email"
+              name="email"
+              onChange={handleInput}
+              value={applicant.email}
+              placeholder="Email address"
+              autoComplete="off"
+              required
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              type="password"
+              name="password"
+              onChange={handleInput}
+              value={applicant.password}
+              placeholder="Password"
+              autoComplete="off"
+              required
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              type="password"
+              name="confirm_password"
+              onChange={handleInput}
+              value={applicant.confirm_password}
+              placeholder="Confirm Password"
+              autoComplete="off"
+              required
+            />
+          </Form.Item>
+          <Form.Item>
             <Button type="primary" htmlType="submit" loading={authLoading} className="register-form-button">
-                {authLoading ? null : "Sign Up"}
-              </Button>
-            </Form.Item>
-          </Form>
-          <Divider>or</Divider>
+              {authLoading ? null : 'Sign Up'}
+            </Button>
+          </Form.Item>
+        </Form>
+        <Divider>or</Divider>
         <Button type="primary" htmlType="button" className="login-link" href="/login">
           Log In
         </Button>
-          </div>
       </div>
+    </div>
   );
 };
 
@@ -153,9 +158,22 @@ const mapStateToProps = (state) => ({
 });
 
 const mapActionsToProps = {
-  registerUser,
-  setError,
-  clearError,
+  register: registerUser,
+  setError: setAuthError,
+  clearError: clearAuthError,
+};
+
+SignUp.propTypes = {
+  isLogged: PropTypes.bool.isRequired,
+  clearError: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  authError: PropTypes.string,
+  authLoading: PropTypes.bool.isRequired,
+  setError: PropTypes.func.isRequired,
+};
+
+SignUp.defaultProps = {
+  authError: null,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(SignUp);

@@ -24,6 +24,7 @@ html, body {
 .App {
 	display: flex;
 	min-height: 100vh;
+	min-height: -webkit-fill-available;
 	width: 100%;
 	text-align: center;
 }
@@ -108,4 +109,8 @@ h1 {
 			@include button($alpaca-green);
 		}
 	}
+}
+
+input {
+  -webkit-appearance: none;
 }
