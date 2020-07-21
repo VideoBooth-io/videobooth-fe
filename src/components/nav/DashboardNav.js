@@ -37,10 +37,6 @@ const DashboardNav = withRouter(props => {
 						<Icon type="setting" theme="filled" />
 						Teams Settings
 					</Menu.Item>
-					
-					<hr style={{margin: "40px 0"}}/>
-
-					<h3 style={{ color: "white", paddingLeft: "24px", paddingBottom: "20px"}}>Team Controls</h3>
 					<Menu.Item key="/manage-teams" disabled>
 						<Icon type="calendar" theme="filled" />
 						<span>Manage Teams</span>
