@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import * as yup from "yup";
-import AuthSider from "../components/AuthSider";
+import Logo from '../imgs/film.png'
 
 // Redux
 import { connect } from "react-redux";
 
 // Components
-import { Form, Input, Button, Alert } from "antd";
+import { Form, Input, Button, Alert, Divider } from "antd";
 
 // Actions
 import { registerUser, setError, clearError } from "../redux/actions/userActions";
@@ -18,10 +18,6 @@ const formSchema = yup.object().shape({
   first_name: yup.string(),
   last_name: yup.string(),
   email: yup.string().email("Please enter a valid email address."),
-  username: yup
-    .string()
-    .min(4, "Username must be atleast 4 characters.")
-    .max(16, "Username must be less than 16 characters."),
   password: yup
     .string()
     .min(8, "Password must be atleast 8 characters.")
@@ -29,12 +25,11 @@ const formSchema = yup.object().shape({
   confirm_password: yup.string().oneOf([yup.ref("password"), null], "Passwords must match."),
 });
 
-const Register = ({isLogged, clearError, registerUser, setError, error}) => {
+const SignUp = ({isLogged, clearError, registerUser, setError, error}) => {
   const [applicant, setApplicant] = useState({
     first_name: "",
     last_name: "",
     email: "",
-    username: "",
     password: "",
     confirm_password: "",
   });
@@ -71,17 +66,15 @@ const Register = ({isLogged, clearError, registerUser, setError, error}) => {
   };
 
   return (
-      <>
-        <AuthSider>
-          <span>
-            Already a member? <Link to="/login" onClick={() => clearError()}>Sign in</Link>
-          </span>`
-          {/* Alert will show any form validation error */}
-          <div className="auth-content">
-            <h1>Create Account</h1>
+    <div className="auth-page">
+      <div className="register-container">
+        <div className="auth-header">
+          <img src={Logo} alt="video camera logo"/>
+          <h1>VideoBooth.io</h1>
+        </div>
           {error ? <Alert message={error} type="error" /> : null}
           <Form onSubmit={submitRegistration} className="register-form" data-testid="register-form" labelAlign="left">
-          <Form.Item label="First Name"labelAlign="left">
+          <Form.Item>
               <Input
                 type="text"
                 name="first_name"
@@ -92,7 +85,7 @@ const Register = ({isLogged, clearError, registerUser, setError, error}) => {
                 required
               />
               </Form.Item>
-              <Form.Item label="Last Name">
+              <Form.Item>
                 <Input
                   type="text"
                   name="last_name"
@@ -103,7 +96,7 @@ const Register = ({isLogged, clearError, registerUser, setError, error}) => {
                   required
                 />
               </Form.Item>
-            <Form.Item label="Email">
+            <Form.Item>
               <Input
                 type="text"
                 name="email"
@@ -114,18 +107,7 @@ const Register = ({isLogged, clearError, registerUser, setError, error}) => {
                 required
               />
             </Form.Item>
-            <Form.Item label="Username">
-              <Input
-                type="text"
-                name="username"
-                onChange={handleInput}
-                value={applicant.username}
-                placeholder="Username"
-                autoComplete="off"
-                required
-              />
-            </Form.Item>
-            <Form.Item label="Password">
+            <Form.Item>
               <Input
                 type="password"
                 name="password"
@@ -136,7 +118,7 @@ const Register = ({isLogged, clearError, registerUser, setError, error}) => {
                 required
               />
             </Form.Item>
-            <Form.Item label="Confirm Password">
+            <Form.Item>
               <Input
                 type="password"
                 name="confirm_password"
@@ -149,13 +131,16 @@ const Register = ({isLogged, clearError, registerUser, setError, error}) => {
             </Form.Item>
             <Form.Item>
             <Button type="primary" htmlType="submit" className="register-form-button">
-                Register
+                Sign Up
               </Button>
             </Form.Item>
           </Form>
+          <Divider>or</Divider>
+        <Button type="primary" htmlType="button" className="login-link" href="/login">
+          Log In
+        </Button>
           </div>
-        </AuthSider>
-      </>
+      </div>
   );
 };
 
@@ -170,4 +155,4 @@ const mapActionsToProps = {
   clearError,
 };
 
-export default connect(mapStateToProps, mapActionsToProps)(Register);
+export default connect(mapStateToProps, mapActionsToProps)(SignUp);

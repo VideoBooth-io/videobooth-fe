@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import * as yup from "yup";
-import AuthSider from "../components/AuthSider";
+import Logo from '../imgs/film.png'
 
 // Redux
 import { connect } from "react-redux";
@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { loginUser, setError, clearError } from "../redux/actions/userActions";
 
 // Components
-import { Form, Icon, Input, Button, Alert } from "antd";
+import { Form, Icon, Input, Button, Alert, Divider } from "antd";
 
 const emailLoginSchema = yup.object().shape({
   email: yup.string().email(),
@@ -59,19 +59,15 @@ const Login = ({isLogged, clearError, loginUser, error}) => {
   };
 
   return (
-    <>
-      <AuthSider>
-        <span>
-          Not a Member? <Link to="/register" onClick={() => clearError()}>Register here</Link>
-        </span>
-        <div className="auth-content">
-          <h1>Welcome Back!</h1>
-          <p>Please sign in</p>
-        {error ? <Alert message={error} type="error" /> : null}
+    <div className="auth-page">
+      <div className="login-container">
+        <div className="auth-header">
+          <img src={Logo} alt="video camera logo"/>
+          <h1>VideoBooth.io</h1>
+        </div>
         <Form className="login-form" data-testid="login-form">
-        <Form.Item label="Username or Email"labelAlign="left">
+          <Form.Item>
             <Input
-              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.5)" }} />}
               type="text"
               name="usernameOrEmail"
               value={user.usernameOrEmail}
@@ -81,9 +77,8 @@ const Login = ({isLogged, clearError, loginUser, error}) => {
               required
             />
           </Form.Item>
-          <Form.Item label="Password"labelAlign="left">
+          <Form.Item>
             <Input
-              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.5)" }} />}
               type="password"
               name="password"
               value={user.password}
@@ -94,15 +89,17 @@ const Login = ({isLogged, clearError, loginUser, error}) => {
             />
           </Form.Item>
           <Form.Item>
-            {/* <Checkbox>Remember me</Checkbox> */}
             <Button type="primary" htmlType="button" onClick={submitLogin} className="login-form-button">
               Sign In
             </Button>
           </Form.Item>
         </Form>
-        </div>
-      </AuthSider>
-    </>
+        <Divider>or</Divider>
+        <Button type="primary" htmlType="button" className="signup-link" href="/signup">
+          Sign Up
+        </Button>
+      </div>
+    </div>
   );
 };
 

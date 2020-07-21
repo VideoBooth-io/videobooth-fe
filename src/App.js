@@ -8,7 +8,7 @@ import UploadProgress from "./components/PostTeamVideo/UploadVideo/UploadProgres
 
 // Pages
 import Login from "./pages/Login";
-import Register from "./pages/Register";
+import SignUp from "./pages/Signup";
 import UserDashboard from "./pages/UserDashboard";
 import UserProfileDashboard from "./pages/UserProfileDashboard";
 import UserVideos from "./pages/UserVideos";
@@ -41,7 +41,7 @@ function App(props) {
 
 			<Route exact path="/login" component={Login} />
 
-			<Route exact path="/register" component={Register} />
+			<Route exact path="/signup" component={SignUp} />
 
 			<Route exact path="/invite/:invite" component={Invite} />
 

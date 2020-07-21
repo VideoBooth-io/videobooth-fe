@@ -1,114 +1,65 @@
-.ant-row.auth-page {
+.auth-page {
 	width: 100%;
-	@media( max-width: 900px ) {
-		display: flex;
-		flex-direction: column;
-	}
-	.ant-col.auth-main {
-		height: 100%;
-		display: flex;
-		height: 100%;
-		justify-content: space-between;
-		align-items: center;
-		flex-direction: column;
-		@media( max-width: 600px ) {
-			justify-content: flex-start;
-		}
-		span {
-			padding: 20px 40px;
-			align-self: flex-end;
-			font-size: 14px;
-			@media( max-width: 900px ) {
-				padding: 0 0 15px 0;
-				align-self: center;
-				order: 3;
-			}
-		}
-		.auth-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url('../imgs/footer.svg');
+	background-repeat: no-repeat;
+	background-position: bottom;
+	.register-container, .login-container {
+		width: 460px;
+		border: 1px solid #eaeced;
+		border-radius: 5px;
+		padding: 42px 42px 36px;
+		background-color: white;
+		.auth-header {
 			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			height: 100%;
-			p {
-				font-size: 16px;
-				margin-bottom: 20px;
-			}
-			span {
-				padding: 0;
-				justify-content: center;
-			}
-			h1 {
-				font-size: 30px;
-				font-weight: normal;
-			}
-		}
-	}
-	.auth-sider {
-		background-color: $alpaca-green;
-		height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		padding: 20px;
-		min-width: 300px;
-		img {
-			max-width: 100%;
-			max-height: 100%;
-		}
-		.alpaca-logo-no-text, p {
-			display: none;
-		}
-		@media( max-width: 900px ) {
-			justify-content: flex-start;
-			padding: 10px;
-			width: 100%;
-			height: auto;
 			align-items: center;
-			img {
-				max-width: 80px;
-			}
-			.alpaca-logo {
-				display: none;
-			}
-			.alpaca-logo-no-text, p {
-				display: flex;
-				align-items: center;
-			}
-			p {
-				color: white;
+			padding: 20px;
+			justify-content: center;
+			h1 {
 				font-family: Pacifico;
-				font-style: normal;
-				font-weight: normal;
-				font-size: 36px;
-				margin: 0 0 0 15px;;
+				color: $dark-grey;
+				margin: 0 0 0 15px;
+			}
+			img {
+				height: 70px;
 			}
 		}
-	}
-	a {
-		color: $dark-blue;
-	}
-	.ant-form {
-		margin-bottom: 60px;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		@media( max-width: 900px ) {
-			margin-bottom: 0;
+		.ant-form {
+			input {
+				height: 44px;
+				width: 100%;
+				border: 1px solid #9da3a6;
+				color: #000;
+				font-size: 15px;
+			}
+			.register-form-button, .login-form-button {
+				@include button($alpaca-green);
+					width: 100%;
+					margin-top: 20px;
+					min-height: 44px;
+					color: white;
+					font-weight: 700;
+					font-size: 15px;
+				}
+			
 		}
-		.register-form-button, .login-form-button {
-			@include button($alpaca-green);
-			width: 144px;
-			margin-top: 20px;
+		.ant-divider {
+			color: #6c7378;
 		}
-		.ant-form-item {
-			margin-bottom: 0;
-			width: 268px;
-		}
-		.ant-form-item-label {
+		.signup-link, .login-link {
 			display: flex;
-		}
-		.ant-form-item-label > label::after {
-			content: '';
+			align-items: center;
+			justify-content: center;
+			border: 1px solid $alpaca-green;
+			background-color: white;
+			width: 100%;
+			margin-top: 20px;
+			min-height: 44px;
+			color: $alpaca-green;
+			font-weight: 700;
+			font-size: 15px;
 		}
 	}
 }

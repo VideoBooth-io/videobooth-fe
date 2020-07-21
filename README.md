@@ -36,7 +36,7 @@ Tagline: It's how you asynchronously record and store practice videos for interv
 
 ### Key Features
 
-- Login/Register with Passport
+- Log In/Sign Up with Passport
 - User Dashboard: shows the teams you joined and your videos
 - Team Dashboard: shows the team members, interview prompt questions, and team videos
 - Video Viewer: plays a video and allows members to provide feedback / view feedback
