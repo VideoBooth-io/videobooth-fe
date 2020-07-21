@@ -106,5 +106,5 @@ export const setError = (errorMessage) => (dispatch) => {
 
 // CLEAR AN ERROR
 export const clearError = () => (dispatch) => {
-	dispatch({ type: constants.CLEAR_ERROR, payload: null });
+	// dispatch({ type: constants.CLEAR_ERROR, payload: null });
 };
