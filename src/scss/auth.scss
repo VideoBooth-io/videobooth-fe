@@ -13,17 +13,19 @@
 		padding: 42px 42px 36px;
 		background-color: white;
 		.auth-header {
-			display: flex;
-			align-items: center;
-			padding: 20px;
-			justify-content: center;
-			h1 {
-				font-family: Pacifico;
-				color: $dark-grey;
-				margin: 0 0 0 15px;
-			}
-			img {
-				height: 70px;
+				a {
+				display: flex;
+				align-items: center;
+				padding: 20px;
+				justify-content: center;
+				h1 {
+					font-family: Pacifico;
+					color: $dark-grey;
+					margin: 0 0 0 15px;
+				}
+				img {
+					height: 70px;
+				}
 			}
 		}
 		.ant-form {

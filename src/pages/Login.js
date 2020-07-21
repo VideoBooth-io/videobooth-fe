@@ -62,8 +62,10 @@ const Login = ({isLogged, clearError, loginUser, error}) => {
     <div className="auth-page">
       <div className="login-container">
         <div className="auth-header">
-          <img src={Logo} alt="video camera logo"/>
-          <h1>VideoBooth.io</h1>
+          <a href="https://videobooth.io">
+            <img src={Logo} alt="video camera logo"/>
+            <h1>VideoBooth.io</h1>
+          </a>
         </div>
         <Form className="login-form" data-testid="login-form">
           <Form.Item>

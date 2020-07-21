@@ -69,8 +69,10 @@ const SignUp = ({isLogged, clearError, registerUser, setError, error}) => {
     <div className="auth-page">
       <div className="register-container">
         <div className="auth-header">
-          <img src={Logo} alt="video camera logo"/>
-          <h1>VideoBooth.io</h1>
+          <a href="https://videobooth.io">
+            <img src={Logo} alt="video camera logo"/>
+            <h1>VideoBooth.io</h1>
+          </a>
         </div>
           {error ? <Alert message={error} type="error" /> : null}
           <Form onSubmit={submitRegistration} className="register-form" data-testid="register-form" labelAlign="left">
