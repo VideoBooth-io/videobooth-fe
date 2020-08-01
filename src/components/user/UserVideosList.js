@@ -1,30 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-//Redux
-import { connect } from "react-redux";
-import { fetchUserVideos, restartRecording } from "../../redux/actions/userActions";
+// Redux
+import { connect } from 'react-redux';
+import { fetchUserVideos } from '../../redux/actions/userActions';
 
-//Components
-import UserVideosCard from "./UserVideosCard";
+// Components
+import UserVideosCard from './UserVideosCard';
 
-function UserVideos({fetchUserVideos, id, videos}) {
+function UserVideos({ fetchVideos, id, videos }) {
+  useEffect(() => {
+    fetchVideos(id);
+  }, [id, fetchVideos]);
 
-	useEffect(() => {
-		fetchUserVideos(id)
-	}, [id, fetchUserVideos])
-
-	return (
-		<div className="user-videos-list">
-			{videos.map(video => <UserVideosCard key={video.id} data={video}/>)}
-		</div>
-	)
+  return (
+    <div className="user-videos-list">
+      {videos.map((video) => <UserVideosCard key={video.id} data={video} />)}
+    </div>
+  );
 }
 
-const mapStateToProps = (state) => {
-	return {
-		videos: state.User.videos,
-		id: state.User.userId,
-	}
-}
+const mapStateToProps = (state) => ({
+  videos: state.User.videos,
+  id: state.User.userId,
+});
 
-export default connect(mapStateToProps, { fetchUserVideos, restartRecording })(UserVideos);
+UserVideos.propTypes = {
+  id: PropTypes.number.isRequired,
+  fetchVideos: PropTypes.func.isRequired,
+  videos: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
+
+export default connect(mapStateToProps, { fetchVideos: fetchUserVideos })(UserVideos);

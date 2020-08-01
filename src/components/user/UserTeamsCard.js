@@ -1,28 +1,36 @@
-import React from "react";
-import { connect } from "react-redux";
-import { Card, Icon, Avatar } from "antd";
-import { Link } from "react-router-dom";
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Card, Icon, Avatar } from 'antd';
+import { Link } from 'react-router-dom';
+
 const { Meta } = Card;
 
-const TeamCard = (props) => {
-	return (
-		<Link to={`/teams/${props.data.id}`}>
-			<Card className="teamCard" size="small">
-				<Icon type="ellipsis" />
-				{props.data.avatar ? props.data.avatar : <Avatar size={64} icon="team" />}
-				<Meta
-					style={{ textAlign: "left" }}
-					title={props.data.name}
-					description={<p className="small">{props.data.description}</p>}
-				/>
-			</Card>
-		</Link>
-	);
+const TeamCard = ({ data }) => (
+  <Link to={`/teams/${data.id}`}>
+    <Card className="teamCard" size="small">
+      <Icon type="ellipsis" />
+      {data.avatar ? data.avatar : <Avatar size={64} icon="team" />}
+      <Meta
+        style={{ textAlign: 'left' }}
+        title={data.name}
+        description={<p className="small">{data.description}</p>}
+      />
+    </Card>
+  </Link>
+);
+
+const mapStateToProps = (state) => ({
+  isUpdating: state.isUpdating,
+});
+
+TeamCard.propTypes = {
+  data: PropTypes.shape({
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
-const mapStateToProps = (state) => {
-	return {
-		isUpdating: state.isUpdating,
-	};
-};
 export default connect(mapStateToProps, {})(TeamCard);
