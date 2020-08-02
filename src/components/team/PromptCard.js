@@ -2,7 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { Collapse } from "antd";
 import TeamVideoList from "./TeamVideoList";
-import { humanDate } from "../utils/HumanDate";
+import humanDate from "../utils/HumanDate";
 
 const { Panel } = Collapse;
 

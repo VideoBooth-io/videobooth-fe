@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card } from 'antd';
 import 'antd/dist/antd.css';
-import { humanDate } from '../utils/HumanDate';
+import humanDate from '../utils/HumanDate';
 
 const { Meta } = Card;
 
