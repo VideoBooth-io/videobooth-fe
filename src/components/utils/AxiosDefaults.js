@@ -1,14 +1,14 @@
-import axios from "axios";
+import axios from 'axios';
 
-axios.defaults.baseURL = (function() {
+axios.defaults.baseURL = (function () {
   switch (process.env.REACT_APP_ENV) {
-    case "development":
+    case 'development':
       return process.env.REACT_APP_LOCAL_HOST;
-    case "staging":
+    case 'staging':
       return process.env.REACT_APP_STAGING_URL;
-    case "production":
+    case 'production':
       return process.env.REACT_APP_PRODUCTION_URL;
     default:
       return process.env.REACT_APP_LOCAL_HOST;
   }
-})();
+}());
