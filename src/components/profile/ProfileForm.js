@@ -9,8 +9,9 @@ import { updateUserData, getUserData } from '../../redux/actions/userActions';
 
 const { Panel } = Collapse;
 
-function ProfileForm(props) {
-  const { id, updateUserData, getUserData } = props;
+const ProfileForm = ({
+  id, updateUserData, getUserData, first_name, last_name, email, username, isUpdatingUserData
+}) => {
   const [formError, setFormError] = useState(null);
   const [isSaved, setIsSaved] = useState(false);
   const [activePanel, setActivePanel] = useState('1');
@@ -57,12 +58,12 @@ function ProfileForm(props) {
           <Panel header="Update your personal info" key="1" style={{ textAlign: 'left' }}>
             {formError ? <Alert message={formError} type="error" /> : null}
             <UpdateProfile
-              first_name={props.first_name}
-              last_name={props.last_name}
-              email={props.email}
-              username={props.username}
+              first_name={first_name}
+              last_name={last_name}
+              email={email}
+              username={username}
               handleSubmit={handleSubmit}
-              isUpdatingUserData={props.isUpdatingUserData}
+              isUpdatingUserData={isUpdatingUserData}
               onCancel={onCancel}
             />
           </Panel>
@@ -70,7 +71,7 @@ function ProfileForm(props) {
             {formError ? <Alert message={formError} type="error" /> : null}
             <ChangePassword
               handleSubmit={handleSubmit}
-              isUpdatingUserData={props.isUpdatingUserData}
+              isUpdatingUserData={isUpdatingUserData}
               onCancel={onCancel}
             />
           </Panel>
