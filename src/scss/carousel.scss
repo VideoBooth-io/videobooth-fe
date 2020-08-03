@@ -10,6 +10,9 @@
 		overflow-x: auto;
 		width: fit-content;
 		align-items: center;
+		.ant-empty {
+			margin: 0 auto;
+		}
 	}
 	.leftButton, .rightButton {
 		border: none;

@@ -10,9 +10,9 @@ import UserVideosCard from '../components/user/UserVideosCard';
 import { fetchUserVideos } from '../redux/actions/userActions';
 import { clearError } from '../redux/actions/teamActions';
 
-function UserDashboard({
+const UserDashboard = ({
   id, fetchVideos, clearTeamError, videos,
-}) {
+}) => {
   useEffect(() => {
     clearTeamError();
     fetchVideos(id);
@@ -30,13 +30,18 @@ function UserDashboard({
       </div>
     </NavAndHeader>
   );
-}
+};
 
 const mapStateToProps = (state) => ({
   username: state.User.username,
   videos: state.User.videos,
   id: state.User.userId,
 });
+
+const mapActionsToProps = {
+  fetchVideos: fetchUserVideos,
+  clearTeamError: clearError,
+};
 
 UserDashboard.propTypes = {
   fetchVideos: PropTypes.func.isRequired,
@@ -45,8 +50,4 @@ UserDashboard.propTypes = {
   videos: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-export default connect(mapStateToProps,
-  {
-    fetchVideos: fetchUserVideos,
-    clearTeamError: clearError,
-  })(UserDashboard);
+export default connect(mapStateToProps, mapActionsToProps)(UserDashboard);
