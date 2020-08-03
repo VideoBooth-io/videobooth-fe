@@ -26,10 +26,10 @@ const mapStateToProps = (state) => ({
 
 TeamCard.propTypes = {
   data: PropTypes.shape({
-    avatar: PropTypes.string.isRequired,
+    avatar: PropTypes.string,
     name: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
   }).isRequired,
 };
 

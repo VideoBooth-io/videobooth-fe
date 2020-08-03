@@ -82,7 +82,7 @@ const mapActionsToProps = {
 };
 
 TeamList.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   teams: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   fetchTeams: PropTypes.func.isRequired,
   addTeam: PropTypes.func.isRequired,

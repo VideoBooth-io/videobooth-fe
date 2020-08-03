@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UserContext } from "../utils/UserContext";
+import UserContext from "../utils/UserContext";
 import { connect } from "react-redux";
 import { Card, Avatar } from 'antd';
 import EditMemberCard from './EditMemberCard';

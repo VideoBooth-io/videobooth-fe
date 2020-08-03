@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { UserContext } from "../components/utils/UserContext";
+import UserContext from "../components/utils/UserContext";
 import { useParams, useHistory, Link } from "react-router-dom";
 
 // Components

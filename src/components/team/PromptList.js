@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { UserContext } from "../utils/UserContext";
+import UserContext from "../utils/UserContext";
 
 //Redux
 import { connect } from "react-redux";
