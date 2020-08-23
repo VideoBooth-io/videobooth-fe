@@ -1,21 +1,21 @@
-import React, { useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
 
 // Redux
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 // Actions
-import { fetchVideo } from "../redux/actions/userActions";
+import { Card, Button } from 'antd';
+import { fetchVideo } from '../redux/actions/userActions';
 
 // Components
-import VideoPlayer from "../components/VideoDetails/VideoPlayer";
-import Feedback from "../components/VideoDetails/Feedback";
+import VideoPlayer from '../components/VideoDetails/VideoPlayer';
+import Feedback from '../components/VideoDetails/Feedback';
 
-import NavAndHeader from "../components/nav/NavAndHeader";
-import { Card, Button } from "antd";
-import LoadingView from "../components/utils/LoadingView";
+import NavAndHeader from '../components/nav/NavAndHeader';
+import LoadingView from '../components/utils/LoadingView';
 // Styles
-import "./videoDetailsTemp.css";
+import './videoDetailsTemp.css';
 
 //* Requirements
 //* Card component centered in page
@@ -37,37 +37,37 @@ owner_name(pin): 'Curr Ladley'
 */
 
 export const VideoDetails = ({ video, fetchVideo }) => {
-	const { id } = useParams();
-	const history = useHistory();
+  const { id } = useParams();
+  const history = useHistory();
 
-	useEffect(() => {
-		//If we haven't fetched a video OR we have previously and it doesn't match the one in params, fetch it.
-		if (!video.id || video.id !== Number(id)) {
-			fetchVideo(id);
-		}
-	}, [id, fetchVideo, video.id]);
+  useEffect(() => {
+    // If we haven't fetched a video OR we have previously and it doesn't match the one in params, fetch it.
+    if (!video.id || video.id !== Number(id)) {
+      fetchVideo(id);
+    }
+  }, [id, fetchVideo, video.id]);
 
-	if (video.id !== Number(id)) {
-		return <LoadingView />;
-	}
+  if (video.id !== Number(id)) {
+    return <LoadingView />;
+  }
 
-	return (
-		<NavAndHeader>
-			<Card style={{ margin: "20px" }} className="video-detail-card">
-				<VideoPlayer video={video}/>
-				<Feedback videoId={video.id} videoOwnerId={video.owner_id} />
-				<Button onClick={() => history.goBack()}>Back to dashboard</Button>
-			</Card>
-		</NavAndHeader>
-	);
+  return (
+    <NavAndHeader>
+      <Card style={{ margin: '20px' }} className="video-detail-card">
+        <VideoPlayer video={video} />
+        <Feedback videoId={video.id} videoOwnerId={video.owner_id} />
+        <Button onClick={() => history.goBack()}>Back to dashboard</Button>
+      </Card>
+    </NavAndHeader>
+  );
 };
 
 const mapStateToProps = (state) => ({
-	video: state.User.videoDetailFocus,
+  video: state.User.videoDetailFocus,
 });
 
 const mapActionsToProps = {
-	fetchVideo,
+  fetchVideo,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(VideoDetails);
