@@ -12,7 +12,7 @@ export const registerUser = (applicant) => (dispatch) => {
       dispatch({ type: constants.AUTH_SUCCESS, payload: registerResponse.data });
     })
     .catch((err) => {
-      if (err.response.data.error) {
+      if (err.response && err.response.data && err.response.data.error) {
         dispatch({ type: constants.AUTH_FAILURE, payload: err.response.data.error });
       } else {
         dispatch({ type: constants.AUTH_FAILURE, payload: 'An unexpected error occured.' });
