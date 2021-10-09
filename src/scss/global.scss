@@ -1,114 +1,115 @@
 body {
-	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-		sans-serif;
-	-webkit-font-smoothing : antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-size              : 62.5%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 62.5%;
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }
 
 #root {
   height: 100%;
 }
 
-html, body {
-  height: 100%;
-} 
+html,
+body {
+  height: 100vh;
+}
 
 .App {
-	display: flex;
-	min-height: 100vh;
-	min-height: -webkit-fill-available;
-	width: 100%;
-	text-align: center;
+  display: flex;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  width: 100%;
+  text-align: center;
 }
 
 #root {
-	height: 100%;
+  height: 100%;
 }
 
 .small {
-	font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .tiny {
-	font-size : .65rem;
-	font-style: oblique;
+  font-size: 0.65rem;
+  font-style: oblique;
 }
 
 h1 {
-	font-size: $lg-heading-font-size;
+  font-size: $lg-heading-font-size;
 }
 
 .container {
-	max-width: 1000px;
-	width    : 100%;
-	margin   : auto;
-	padding  : 0 20px;
-	position : relative;
+  max-width: 1000px;
+  width: 100%;
+  margin: auto;
+  padding: 0 20px;
+  position: relative;
 }
 
 .card-flex {
-	display        : flex;
-	flex-wrap      : wrap;
-	justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .dashboard,
 .my-videos {
-	margin: 2% 3%;
+  margin: 2% 3%;
 
-	@media(max-width: 600px) {
-		margin: 10%;
-	}
+  @media (max-width: 600px) {
+    margin: 10%;
+  }
 
-	@media(max-width: 800px) {
-		margin: 5%;
-	}
+  @media (max-width: 800px) {
+    margin: 5%;
+  }
 
-	h1 {
-		font-style : normal;
-		font-weight: bold;
-		font-size  : 36px;
-		line-height: 45px;
-		color      : $dark-grey;
-		text-align : left;
-		margin     : 15px 40px;
-	}
+  h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 45px;
+    color: $dark-grey;
+    text-align: left;
+    margin: 15px 40px;
+  }
 
-	h2 {
-		text-align : left;
-		margin-top : 10px;
-		color      : $dark-grey;
-		font-weight: 600;
-		font-size  : 17px;
-	}
+  h2 {
+    text-align: left;
+    margin-top: 10px;
+    color: $dark-grey;
+    font-weight: 600;
+    font-size: 17px;
+  }
 }
 
 .dashboard-header {
-	display        : flex;
-	align-items    : center;
-	justify-content: space-between;
-	padding        : 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
 
-	button {
-		@include button($alpaca-green);
-		min-width: 142px;
+  button {
+    @include button($alpaca-green);
+    min-width: 142px;
 
-		&:hover {
-			@include button($alpaca-green);
-		}
+    &:hover {
+      @include button($alpaca-green);
+    }
 
-		&:focus {
-			@include button($alpaca-green);
-		}
-	}
+    &:focus {
+      @include button($alpaca-green);
+    }
+  }
 }
 
 input {

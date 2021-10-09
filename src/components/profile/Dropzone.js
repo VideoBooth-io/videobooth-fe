@@ -26,6 +26,14 @@ const Dropzone = ({ disabled, avatar, fileAdded }) => {
     }
   };
 
+  const onSelectFile = (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      const reader = new FileReader();
+      reader.addEventListener('load', () => fileAdded(reader.result));
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
+
   const openFileDialog = () => {
     if (disabled) return;
     fileInputRef.current.click();
@@ -68,10 +76,11 @@ const Dropzone = ({ disabled, avatar, fileAdded }) => {
       />
       <input
         ref={fileInputRef}
+        accept="image/*"
         className="FileInput"
         type="file"
         multiple
-        onChange={onFileAdded}
+        onChange={onSelectFile}
       />
       <Button onClick={openFileDialog}>
         <span>Change profile picture</span>

@@ -4,6 +4,7 @@ import {
   Icon, Modal, Button, Alert,
 } from 'antd';
 import { connect } from 'react-redux';
+import ImageCrop from './ImageCrop';
 import Dropzone from './Dropzone';
 import Progress from './Progress';
 import { updateUProfilePicture, clearPhotoUpload } from '../../redux/actions/userActions';
@@ -15,7 +16,7 @@ const Upload = ({
   const [showModal, setShowModal] = useState(false);
 
   const fileAdded = (newFile) => {
-    setFile(newFile[0]);
+    setFile(newFile);
     setShowModal(true);
   };
 
@@ -83,8 +84,7 @@ const Upload = ({
         <div className="Files">
           {file ? (
             <div key={file.name} className="Row">
-              <img alt="selected file" src={file.path} />
-              <span className="Filename">{file.name}</span>
+              <ImageCrop file={file} />
               {renderProgress(file)}
             </div>
           ) : null}
